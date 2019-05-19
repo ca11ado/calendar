@@ -1,0 +1,6 @@
+.cache
+dist
+.swp
+.git
+node_modules/
+nohup.out
