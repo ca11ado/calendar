@@ -1,20 +1,19 @@
 <template>
-  <div :class="$style.calendar">
-    <x-cubic
-      v-for="cubicId in 4*12*80"
-      :cubic-id="cubicId"
-      :title="getTitle(cubicId)"
-      :key="cubicId"
-    /> 
+  <div :class="$style.root">
+    <x-calendar 
+      :date-from="new Date('03.25.1989')"
+      :date-to="new Date('12.01.2019')"
+      date-interval="year"
+    />
   </div>
 </template>
 
 <script>
-import XCubic from 'blocks/x-cubic/x-cubic.vue';
+import XCalendar from 'blocks/x-calendar/x-calendar.vue';
 
 export default {
   components: {
-    XCubic
+    XCalendar,
   },
   props: {
   },
@@ -36,10 +35,7 @@ export default {
 </script>
 
 <style module>
-  .calendar {
-    display: flex;
-    flex-wrap: wrap;
-    padding: 5px;
-    justify-content: space-between;
+  .root {
+    display: block;
   }
 </style>

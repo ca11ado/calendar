@@ -7,7 +7,8 @@ module.exports = {
   mode: 'development',
   resolve: {
     alias: {
-      blocks: path.join(__dirname, 'src/components')
+      blocks: path.join(__dirname, 'src/components'),
+      utils: path.join(__dirname, 'src/utils')
     }
   },
   entry: [

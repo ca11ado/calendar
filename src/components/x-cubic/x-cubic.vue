@@ -1,15 +1,26 @@
 <template>
   <div :class="$style.root">
-    {{ title }}
+    <slot></slot>
   </div>
 </template>
 
 <script>
-
 export default {
   components: {
   },
   props: {
+    cubicId: {
+      type: Number,
+      required: true,
+    },
+    color: {
+      type: String,
+      default: 'transparent',
+    },
+    tags: {
+      type: Array,
+      default: () => ([]),
+    },
     title: {
       type: String,
       default: '',
@@ -17,8 +28,6 @@ export default {
   },
   data() {
     return {};
-  },
-  computed: {
   },
 };
 </script>
