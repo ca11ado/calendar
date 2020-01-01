@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config webpack.config.dev.js",
+    "dev": "webpack-dev-server --config webpack.config.dev.js",
     "bw": "npm run build -- -w"
   },
   "repository": {
@@ -26,11 +27,13 @@
   },
   "devDependencies": {
     "css-loader": "^3.4.0",
+    "html-webpack-plugin": "^3.2.0",
     "mini-css-extract-plugin": "^0.9.0",
     "vue-loader": "^15.8.3",
     "vue-style-loader": "^4.1.2",
     "vue-template-compiler": "^2.6.11",
     "webpack": "^4.41.5",
-    "webpack-cli": "^3.3.10"
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.10.1"
   }
 }

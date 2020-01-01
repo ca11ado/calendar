@@ -1,10 +1,19 @@
 'use strict'
 
+const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
-const { VueLoaderPlugin } = require('vue-loader')
+const { VueLoaderPlugin } = require('vue-loader');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 module.exports = {
   mode: 'development',
+  devServer: {
+    hot: true,
+    watchOptions: {
+      poll: true
+    }
+  },
   resolve: {
     alias: {
       blocks: path.join(__dirname, 'src/components'),
@@ -41,7 +50,13 @@ module.exports = {
     ]
   },
   plugins: [
+    new webpack.HotModuleReplacementPlugin(),
     new VueLoaderPlugin(),
-    new MiniCssExtractPlugin()
+    new MiniCssExtractPlugin(),
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      template: 'index.html',
+      inject: true
+    })
   ]
 };

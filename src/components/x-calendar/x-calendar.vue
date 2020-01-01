@@ -61,7 +61,7 @@ export default {
       this.addEvent(
         new Date('01.01.2000'),
         new Date('03.01.2000'),
-        'blue',
+        'red',
         'Пробное событие',
       );
     }, 2000);
