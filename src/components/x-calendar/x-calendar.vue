@@ -1,12 +1,12 @@
 <template>
   <div :class="$style.root">
     <x-cubic
-      v-for="{ id, title } in cubics"
+      v-for="{ id, title, color } in cubics"
       :key="id"
       :cubic-id="id"
+      :color="color"
       :class="$style.root"
     >
-      {{ title }}
     </x-cubic>
   </div>
 </template>
@@ -43,7 +43,12 @@ export default {
       const count = Math.ceil(moment.duration(this.dateTo - this.dateFrom)[momentMethod]());
       const cb = new Array(count)
         .fill(1)
-        .map((v, index) => ({ id: index + 1, title: index + 1 }));
+        .map((v, index) => ({ id: index + 1, title: index + 1 }))
+        .map(cubic => {
+          return cubic.id > 4 && cubic.id < 10
+            ? Object.assign({}, cubic, { color: 'red' })
+            : cubic;
+        });
       return cb;
     };
 

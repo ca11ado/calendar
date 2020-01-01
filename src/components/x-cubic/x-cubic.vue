@@ -1,5 +1,5 @@
 <template>
-  <div :class="$style.root">
+  <div :class="$style.root" :style="{ backgroundColor: color }">
     <slot></slot>
   </div>
 </template>
