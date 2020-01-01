@@ -1,5 +1,5 @@
 <template>
-  <div :class="$style.root" :style="{ backgroundColor: color }">
+  <div :class="computedClasses" :style="{ backgroundColor: color }">
     <slot></slot>
   </div>
 </template>
@@ -28,6 +28,13 @@ export default {
   },
   data() {
     return {};
+  },
+  computed: {
+    computedClasses() {
+      return {
+        [this.$style.root]: true,
+      };
+    },
   },
 };
 </script>
