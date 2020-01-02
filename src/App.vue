@@ -24,6 +24,7 @@
 </template>
 
 <script>
+import moment from 'moment';
 import { mapState, mapActions } from 'vuex';
 import { calendar as dbCalendar, events as dbEvents } from './db';
 import XCubic from 'blocks/x-cubic/x-cubic.vue';
@@ -50,12 +51,19 @@ export default {
   },
   mounted() {
     this.setCalendar({
-      from: new Date(dbCalendar.from),
-      to: new Date(dbCalendar.to),
+      from: moment(dbCalendar.from),
+      to: moment(dbCalendar.to),
       step: dbCalendar.step,
     });
 
-    this.addEvents(dbEvents);
+    this.addEvents(
+      dbEvents.map(event =>
+        Object.assign({}, event, {
+          from: moment(event.from),
+          to: moment(event.to)
+        }),
+      ),
+    );
   },
   methods: {
     getTitle(cubicId) {

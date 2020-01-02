@@ -1,35 +1,39 @@
 export const calendar = {
-    from: '03.25.1989',
-    to: '03.25.2069',
+    from: '1989-03-25',
+    to: '2069-03-25',
+    /*
+    from: '2015-01-01',
+    to: '2016-12-01',
+    */
     step: 'week',
 };
 
 export const events = [
   {
     id: 1,
-    dateFrom: '01.25.2017',
-    dateTo: '01.01.2020',
+    from: '2017-01-25',
+    to: '2020-01-01',
     tags: ['work'],
     title: 'Lamoda',
     description: 'Working in Lamoda',
   }, {
     jd: 2,
-    dateFrom: '10.01.2015',
-    dateTo: '01.09.2016',
+    from: '2015-10-01',
+    to: '2016-01-09',
     tags: ['work'],
     title: '2Gis',
     description: 'Working in 2Gis',
   }, {
     jd: 3,
-    dateFrom: '03.01.2014',
-    dateTo: '04.01.2015',
+    from: '2014-03-01',
+    to: '2015-04-01',
     tags: ['work'],
     title: 'Funstreams.tv',
     description: 'Working in funstreams.tv',
   }, {
     jd: 4,
-    dateFrom: '09.01.2011',
-    dateTo: '09.01.2014',
+    from: '2011-09-01',
+    to: '2014-09-01',
     tags: ['work'],
     title: 'ГБОУ ЦО №429 "Соколиная гора"',
     description: 'Working in school',

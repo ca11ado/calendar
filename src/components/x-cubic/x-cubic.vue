@@ -1,7 +1,7 @@
 <template>
   <div
     :class="computedClasses"
-    :style="{ backgroundColor: color }"
+    :style="{ backgroundColor: componentColor }"
     :title="componentTitle"
   >
     <x-cubic
@@ -13,6 +13,7 @@
       :to="cubic.to"
     />
     <slot v-else></slot>
+    <span v-if="activeEvents"></span>
   </div>
 </template>
 
@@ -22,7 +23,9 @@ import tap from 'lodash/fp/tap';
 import map from 'lodash/map';
 import moment from 'moment';
 import capitalize from 'lodash/capitalize';
+import { mapState } from 'vuex';
 import { isStepAllowed } from 'utils/date';
+import { getRandomColor } from 'utils/color';
 
 const DATE_FORMAT = 'DD.MM.YYYY';
 
@@ -48,11 +51,11 @@ export default {
       default: '',
     },
     from: {
-      type: [Boolean, Date, moment],
+      type: [Boolean, moment],
       default: false,
     },
     to: {
-      type: [Boolean, Date, moment],
+      type: [Boolean, moment],
       default: false,
     },
     step: {
@@ -65,6 +68,12 @@ export default {
     return {};
   },
   computed: {
+    ...mapState('calendar',
+      ['events'],
+    ),
+    componentColor() {
+      return (this.activeEvents.length && getRandomColor(this.activeEvents[0].title)) || this.color;
+    },
     componentTitle() {
       return this.from && this.to && this.from.format
         ? `${this.from.format(DATE_FORMAT)} : ${this.to.format(DATE_FORMAT)}`
@@ -100,6 +109,18 @@ export default {
         };
       });
     },
+    activeEvents() {
+      if (!(this.to && this.from)) return [];
+      if (this.cubics.length) return [];
+      if (!this.events.length) return [];
+
+      const events = this.events.filter(event => {
+        const dd = this.from.isSameOrAfter(event.from) && this.to.isSameOrBefore(event.to);
+        return dd;
+      });
+
+      return events;
+    },
   },
   methods: {
     getStepsCountFromMs(step, duration) {
@@ -117,11 +138,6 @@ export default {
     },
   },
   mounted() {
-    /*
-    if (this.cubics.length) {
-      console.log('%c custom log', 'color:red;', this.cubics);
-    }
-    */
   },
 };
 </script>
