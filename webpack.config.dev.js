@@ -17,7 +17,8 @@ module.exports = {
   resolve: {
     alias: {
       blocks: path.join(__dirname, 'src/components'),
-      utils: path.join(__dirname, 'src/utils')
+      utils: path.join(__dirname, 'src/utils'),
+      store: path.join(__dirname, 'src/store'),
     }
   },
   entry: [

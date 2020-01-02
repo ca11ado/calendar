@@ -1,4 +1,10 @@
-export default [
+export const calendar = {
+    from: '03.25.1989',
+    to: '03.25.2069',
+    step: 'week',
+};
+
+export const events = [
   {
     id: 1,
     dateFrom: '01.25.2017',

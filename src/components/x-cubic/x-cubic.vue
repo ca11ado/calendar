@@ -7,7 +7,8 @@
     <x-cubic
       v-if="cubics.length"
       v-for="cubic in cubics"
-      :cubic-id="`22222_${cubic.id}`"
+      :key="`22222_${cubic.cubicId}`"
+      :cubic-id="`22222_${cubic.cubicId}`"
       :from="cubic.from"
       :to="cubic.to"
     />
