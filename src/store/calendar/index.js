@@ -12,8 +12,8 @@ export default {
       commit('setTo', to);
       commit('setStep', step);
     },
-    addEvent({ commit }, event) {
-      commit('addEvent', event);
+    addEvents({ commit }, events) {
+      commit('addEvents', events);
     },
   },
   mutations: {
@@ -26,8 +26,8 @@ export default {
     setStep(state, payload) {
       state.step = payload;
     },
-    addEvent(state, event) {
-      state.push(event);
+    addEvents(state, events) {
+      state.events = [...state.events, ...events];
     },
   },
   getters: {

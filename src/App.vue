@@ -54,6 +54,8 @@ export default {
       to: new Date(dbCalendar.to),
       step: dbCalendar.step,
     });
+
+    this.addEvents(dbEvents);
   },
   methods: {
     getTitle(cubicId) {
@@ -63,7 +65,7 @@ export default {
       return getRandomColor(id);
     },
     ...mapActions('calendar',
-      ['setCalendar'],
+      ['setCalendar', 'addEvents'],
     ),
   },
 };
