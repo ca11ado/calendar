@@ -1,5 +1,5 @@
 <template>
-  <div :class="$style.root">
+  <div :class="[$style.root, $style.yearInWeeksPerRow]">
     <x-cubic
       v-for="{ id, title, color, hasMargin } in cubics"
       :key="id"
@@ -12,9 +12,11 @@
 </template>
 
 <script>
+import db from '../../db';
 import capitalize from 'lodash/capitalize';
 import moment from 'moment';
 import XCubic from 'blocks/x-cubic/x-cubic.vue';
+import { getRandomColor } from 'utils/color';
 
 const intervalsValue = interval => ['none', 'week', 'day', 'year'].includes(interval);
 
@@ -57,14 +59,15 @@ export default {
     };
   },
   mounted() {
-    setTimeout(() => {
+    const color = 'blue';
+    db.forEach((event) => {
       this.addEvent(
-        new Date('01.01.2000'),
-        new Date('03.01.2000'),
-        'red',
-        'Пробное событие',
+        new Date(event.dateFrom),
+        new Date(event.dateTo),
+        getRandomColor(),
+        event.title,
       );
-    }, 2000);
+    });
   },
   methods: {
     addEvent(dateFrom, dateTo, color, title, tags, description) {
@@ -96,11 +99,25 @@ export default {
 };
 </script>
 
+<style>
+  body {
+    background: black;
+  }
+</style>
+
 <style module>
   .root {
+    background: white;
     display: flex;
     flex-wrap: wrap;
     padding: 5px;
     justify-content: flex-start;
+    max-width: 820px;
+  }
+
+  .yearInWeeksPerRow > div {
+    width: 10px;
+    height: 10px;
+    /* flex: 1 0 calc(2.6% - 10px); */
   }
 </style>

@@ -2,7 +2,7 @@
   <div :class="$style.root">
     <x-calendar 
       :date-from="new Date('03.25.1989')"
-      :date-to="new Date('12.01.2019')"
+      :date-to="new Date('03.25.2069')"
       date-interval="week"
     />
   </div>
