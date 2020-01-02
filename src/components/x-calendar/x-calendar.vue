@@ -1,13 +1,21 @@
 <template>
-  <div :class="[$style.root, $style.yearInWeeksPerRow]">
+  <div :class="[$style.root]">
     <x-cubic
-      v-for="{ id, title, color, hasMargin } in cubics"
+      cubic-id="11111111111111111"
+      :from="new Date('03.25.1989')"
+      :to="new Date('03.25.2069')"
+      step="week"
+    />
+
+      <!--
+    <x-cubic
+      v-for="{ id, title, color } in cubics"
       :key="id"
       :cubic-id="id"
       :color="color"
       :class="$style.root"
-    >
-    </x-cubic>
+    />
+      -->
   </div>
 </template>
 
@@ -17,8 +25,7 @@ import capitalize from 'lodash/capitalize';
 import moment from 'moment';
 import XCubic from 'blocks/x-cubic/x-cubic.vue';
 import { getRandomColor } from 'utils/color';
-
-const intervalsValue = interval => ['none', 'week', 'day', 'year'].includes(interval);
+import { isStepAllowed } from 'utils/date';
 
 export default {
   components: {
@@ -36,13 +43,13 @@ export default {
     dateInterval: {
       type: String,
       default: 'week',
-      validator: intervalsValue,
+      validator: isStepAllowed,
     },
 
     highlightIntervals: {
       type: String,
       default: 'none',
-      validator: intervalsValue,
+      validator: isStepAllowed,
     },
   },
   data() {

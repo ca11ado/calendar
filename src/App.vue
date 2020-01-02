@@ -6,7 +6,7 @@
       date-interval="week"
     />
     <div :class="$style.description">
-      <h3>Agenta:</h3>
+      <h3>Legend:</h3>
       <ul>
       <li v-for="event in events">
         <span :style="{ color: getColor(event.title) }">
