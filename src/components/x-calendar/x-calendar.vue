@@ -64,7 +64,7 @@ export default {
       this.addEvent(
         new Date(event.dateFrom),
         new Date(event.dateTo),
-        getRandomColor(),
+        getRandomColor(event.title),
         event.title,
       );
     });
@@ -99,13 +99,11 @@ export default {
 };
 </script>
 
-<style>
-  body {
+<style module>
+  :global(body) {
     background: black;
   }
-</style>
 
-<style module>
   .root {
     background: white;
     display: flex;

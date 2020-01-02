@@ -1,3 +1,5 @@
+import map from 'lodash/map';
+
 function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
 }
@@ -26,18 +28,19 @@ const colors = [
   'teal',
 ];
 
-const pickedColors = [];
+const pickedColors = {};
 
-export const getRandomColor = () => {
-  if (colors.length === pickedColors.length) throw new Error('not enough colors');
+export const getRandomColor = (id) => {
+  if (pickedColors[id]) return pickedColors[id];
+  if (colors.length === Object.keys(pickedColors).length) throw new Error('not enough colors');
   
   const getColor = () => {
     const index = getRandomInt(colors.length);
     const color = colors[index];
 
-    return pickedColors.includes(color)
+    return map(pickedColors, (ind, key) => key).includes(color)
       ? getColor()
-      : pickedColors.push(color) && color;
+      : (pickedColors[id] = color) && color;
   };
 
   return getColor();
