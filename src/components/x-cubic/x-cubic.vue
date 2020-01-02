@@ -72,7 +72,7 @@ export default {
       ['events'],
     ),
     componentColor() {
-      return (this.activeEvents.length && getRandomColor(this.activeEvents[0].title)) || this.color;
+      return (this.activeEvents.length && getRandomColor(this.activeEvents[0].tags[0])) || this.color;
     },
     componentTitle() {
       return this.from && this.to && this.from.format

@@ -31,5 +31,12 @@ export default {
     },
   },
   getters: {
+    tags: (state) => {
+      const uniq = (value, index, self) => self.indexOf(value) === index;
+      return state.events
+        .map(({ tags }) => tags)
+        .reduce((accum, tags) => [...accum, ...tags], [])
+        .filter(uniq);
+    },
   },
 };

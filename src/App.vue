@@ -10,16 +10,7 @@
       :class="$style.calendar"
     />
 
-    <div :class="$style.description">
-      <h3>Legend:</h3>
-      <ul>
-      <li v-for="event in events">
-        <span :style="{ color: getColor(event.title) }">
-          {{ event.title }}
-        </span>
-      </li>
-      </ul>
-    </div>
+    <x-legend />
   </div>
 </template>
 
@@ -28,11 +19,12 @@ import moment from 'moment';
 import { mapState, mapActions } from 'vuex';
 import { calendar as dbCalendar, events as dbEvents } from './db';
 import XCubic from 'blocks/x-cubic/x-cubic.vue';
-import { getRandomColor } from 'utils/color';
+import XLegend from 'blocks/x-legend/x-legend.vue';
 
 export default {
   components: {
     XCubic,
+    XLegend,
   },
   props: {
   },
@@ -69,9 +61,6 @@ export default {
     getTitle(cubicId) {
       return String(Math.floor(cubicId / (4*12)) + 1);
     },
-    getColor(id) {
-      return getRandomColor(id);
-    },
     ...mapActions('calendar',
       ['setCalendar', 'addEvents'],
     ),
@@ -90,10 +79,5 @@ export default {
 
   .calendar {
     max-width: 70%;
-  }
-
-  .description {
-    padding: 20px;
-    color: white;
   }
 </style>
