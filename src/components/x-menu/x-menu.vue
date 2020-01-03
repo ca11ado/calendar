@@ -1,41 +1,31 @@
 <template>
   <div :class="$style.root">
     <span
-      v-for="item in menu"
+      v-for="item in items"
       :class="computedClass(item)"
       @click="select(item)"
-    >
-      {{ item }}
-    </span>
+    >{{ item }}</span>
   </div>
 </template>
 
 <script>
-
+import { mapState, mapActions } from 'vuex';
 
 export default {
   components: {
   },
   props: {
-  },
-  data() {
-    return {
-      activeMenu: 'calendar',
-      menu: ['calendar', 'controls'],
-    };
-  },
-  mounted() {
-    this.$emit('acitve', this.activeMenu);
+    items: Array,
+    active: String,
   },
   methods: {
-    select(menuName) {
-      this.activeMenu = menuName;
-      this.$emit('active', menuName);
-    },
+    ...mapActions('menu', {
+      select: 'setActive',
+    }),
     computedClass(item) {
       return {
         [this.$style.menu]: true,
-        [this.$style.activeMenu]: item === this.activeMenu,
+        [this.$style.activeMenu]: item === this.active,
       };
     },
   },
@@ -57,6 +47,6 @@ export default {
   }
 
   .activeMenu {
-    color: red;
+    text-decoration: underline;
   }
 </style>

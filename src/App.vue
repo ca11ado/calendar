@@ -1,7 +1,7 @@
 <template>
   <div :class="$style.root">
-    <x-menu @active="active = $event"/>
-    <div v-if="active === 'calendar'" :class="$style.content">
+    <x-menu :items="menuItems" :active="menuActive" />
+    <div v-show="menuActive === 'calendar'" :class="$style.content">
       <x-cubic
         v-if="calendarFrom && calendarTo && calendarStep"
         cubic-id="root"
@@ -36,7 +36,6 @@ export default {
   data() {
     return {
       events: dbEvents,      
-      active: false,
     };
   },
   computed: {
@@ -45,6 +44,10 @@ export default {
       calendarFrom: 'from',
       calendarTo: 'to',
       calendarStep: 'step',
+    }),
+    ...mapState('menu', {
+      menuItems: 'items',
+      menuActive: 'active',
     }),
   },
   mounted() {

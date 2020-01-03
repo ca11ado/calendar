@@ -5,7 +5,7 @@ export const calendar = {
     from: '2015-01-01',
     to: '2016-12-01',
     */
-    step: 'week',
+    step: 'month',
 };
 
 export const events = [
