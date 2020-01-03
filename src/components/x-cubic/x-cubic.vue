@@ -114,12 +114,11 @@ export default {
       if (this.cubics.length) return [];
       if (!this.events.length) return [];
 
-      const events = this.events.filter(event => {
-        const dd = this.from.isSameOrAfter(event.from) && this.to.isSameOrBefore(event.to);
-        return dd;
+      return this.events.filter(event => {
+        return event.from.isSameOrAfter(this.from) && event.from.isBefore(this.to)
+          || event.to.isAfter(this.from) && event.to.isBefore(this.to)
+          || event.from.isSameOrBefore(this.from) && event.to.isSameOrAfter(this.to);
       });
-
-      return events;
     },
   },
   methods: {
