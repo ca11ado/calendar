@@ -115,7 +115,9 @@ export default {
       if (!this.events.length) return [];
 
       return this.events.filter(event => {
-        return event.from.isSameOrAfter(this.from) && event.from.isBefore(this.to)
+        return event.from.isBefore(this.to)
+          && event.to.isAfter(this.from)
+          && event.from.isSameOrAfter(this.from) && event.from.isBefore(this.to)
           || event.to.isAfter(this.from) && event.to.isBefore(this.to)
           || event.from.isSameOrBefore(this.from) && event.to.isSameOrAfter(this.to);
       });

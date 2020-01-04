@@ -9,7 +9,7 @@
         :to="calendarTo"
         :step="calendarStep"
         color="white"
-        :class="$style.calendar"
+        :class="{[$style.calendar]: true, [$style.month12InRow]: calendarStep === 'month'}"
       />
 
       <x-legend />
@@ -58,12 +58,24 @@ export default {
     });
 
     this.addEvents(
-      dbEvents.map(event =>
-        Object.assign({}, event, {
-          from: moment(event.from),
-          to: moment(event.to)
-        }),
-      ),
+      dbEvents
+        .filter(event => event.tags.includes('vacation'))
+        .map(event =>
+          Object.assign({}, event, {
+            from: moment(event.from),
+            to: moment(event.to)
+          }),
+        ),
+    );
+    this.addEvents(
+      dbEvents
+        .filter(event => event.tags.includes('work'))
+        .map(event =>
+          Object.assign({}, event, {
+            from: moment(event.from),
+            to: moment(event.to)
+          }),
+        ),
     );
   },
   methods: {
@@ -88,5 +100,9 @@ export default {
 
   .calendar {
     max-width: 70%;
+  }
+
+  .month12InRow {
+    width: 206px;
   }
 </style>

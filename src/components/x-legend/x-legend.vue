@@ -4,6 +4,7 @@
       <span
         v-for="tag in tags"
         :class="$style.tag"
+        :style="{ color: getColor(tag) }"
       >
         {{ tag }}
       </span>

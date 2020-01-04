@@ -112,5 +112,12 @@ export const events = [
     tags: ['vacation'],
     title: 'Крым',
     description: 'Осенний Крым со школой',
+  }, {
+    id: 16,
+    from: '2018-11-01',
+    to: '2019-04-20',
+    tags: ['vacation'],
+    title: 'Южная Америка',
+    description: 'Полугодовая поездка по ЮА',
   },
 ];
