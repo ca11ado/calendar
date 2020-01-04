@@ -15,8 +15,10 @@
           [$style.yearInWeeksRow]: calendarStep === 'week',
         }"
       />
-
       <x-legend />
+    </div>
+    <div v-if="menuActive === 'controls'">
+      <x-controls />
     </div>
   </div>
 </template>
@@ -28,12 +30,14 @@ import { calendar as dbCalendar, events as dbEvents } from './db';
 import XCubic from 'blocks/x-cubic/x-cubic.vue';
 import XMenu from 'blocks/x-menu/x-menu.vue';
 import XLegend from 'blocks/x-legend/x-legend.vue';
+import XControls from 'blocks/x-controls/x-controls.vue';
 
 export default {
   components: {
     XCubic,
     XLegend,
     XMenu,
+    XControls,
   },
   props: {
   },
