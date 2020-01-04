@@ -1,15 +1,14 @@
 <template>
   <div :class="$style.root">
-    <div :class="$style.tags">
-      <span
-        v-for="tag in tags"
-        :class="$style.tag"
-        :style="{ color: getColor(tag) }"
-      >
-        {{ tag }}
-      </span>
-    </div>
-    <h3>Legend:</h3>
+    <h4>Legend:</h4>
+      <ul>
+        <li
+          v-for="tag in tags"
+          :class="$style.tag"
+          :style="{ color: getColor(tag) }"
+        >{{ tag }}</li>
+      </ul>
+    <!--
     <ul>
     <li v-for="event in events">
       <span :style="{ color: getColor(event.tags[0]) }">
@@ -17,6 +16,7 @@
       </span>
     </li>
     </ul>
+    -->
   </div>
 </template>
 
@@ -48,6 +48,11 @@ export default {
   .root {
     padding: 20px;
     color: white;
+  }
+
+  .root h4,
+  .root ul {
+    margin: 5px;
   }
 
   .tags > .tag + .tag {
