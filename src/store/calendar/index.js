@@ -1,16 +1,24 @@
+const steps = ['day', 'week', 'month', 'year'];
+
 export default {
   namespaced: true,
   state: {
     events: [],
     from: null,
     to: null,
-    step: null,
+    step: steps[steps.length - 1],
+    steps,
   },
   actions: {
     setCalendar({ commit }, { from, to, step }) {
       commit('setFrom', from);
       commit('setTo', to);
       commit('setStep', step);
+    },
+    updateCalendar({ commit }, { from, to, step }) {
+      if (from) commit('setFrom', from);
+      if (to) commit('setTo', to);
+      if (step) commit('setStep', step);
     },
     addEvents({ commit }, events) {
       commit('addEvents', events);
