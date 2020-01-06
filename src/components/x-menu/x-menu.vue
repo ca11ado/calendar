@@ -1,5 +1,6 @@
 <template>
   <div :class="$style.root">
+    Menu: 
     <span
       v-for="item in items"
       :class="computedClass(item)"
