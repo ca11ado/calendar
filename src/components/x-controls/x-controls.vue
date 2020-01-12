@@ -1,5 +1,6 @@
 <template>
   <div :class="$style.root">
+    <x-export />
     <h3>Calendar preferences</h3>
     <form
       ref="formCalendar"
@@ -89,11 +90,13 @@ import moment from 'moment';
 import map from 'lodash/map';
 import compact from 'lodash/compact';
 import { mapState, mapActions, mapGetters } from 'vuex';
+import XExport from 'blocks/x-export/x-export.vue';
 
 const FORM_DATE_FORMAT = 'YYYY-MM-DD';
 
 export default {
   components: {
+    XExport,
   },
   props: {
   },
